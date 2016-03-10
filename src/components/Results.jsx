@@ -1,8 +1,9 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import {connect} from 'react-redux';
 import Winner from './Winner';
 
-export default React.createClass({
+export const Results = React.createClass({
   displayName: 'Results',
   mixins: [PureRenderMixin],
   propTypes: {
@@ -36,11 +37,21 @@ export default React.createClass({
         </div>
         <div className="management">
           <button ref="next"
-                   className="next"
-                   onClick={this.props.next}>
+                  className="next"
+                  onClick={this.props.next}>
             Next
           </button>
         </div>
       </div>;
   }
 });
+
+function mapStateToProps(state) {
+  return {
+    pair: state.getIn(['vote', 'pair']),
+    tally: state.getIn(['vote', 'tally']),
+    winner: state.get('winner')
+  }
+}
+
+export const ResultsContainer = connect(mapStateToProps)(Results);
