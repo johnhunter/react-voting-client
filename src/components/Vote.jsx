@@ -4,11 +4,6 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 export default React.createClass({
   displayName: 'Vote',
   mixins: [PureRenderMixin],
-  propTypes: {
-    pair: React.PropTypes.any.isRequired,
-    vote: React.PropTypes.func,
-    hasVoted: React.PropTypes.string
-  },
   getPair: function() {
     return this.props.pair || [];
   },

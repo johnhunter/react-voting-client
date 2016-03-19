@@ -6,12 +6,6 @@ import Winner from './Winner';
 export const Results = React.createClass({
   displayName: 'Results',
   mixins: [PureRenderMixin],
-  propTypes: {
-    pair: React.PropTypes.any.isRequired,
-    tally: React.PropTypes.object.isRequired,
-    next: React.PropTypes.func,
-    winner: React.PropTypes.string
-  },
   getPair: function() {
     return this.props.pair || [];
   },
