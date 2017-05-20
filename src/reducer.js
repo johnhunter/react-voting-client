@@ -1,5 +1,19 @@
 import {Map} from 'immutable';
 
+// reducer function transforms state for given action
+
+export default function(state = Map(), action) {
+  switch (action.type) {
+  case 'SET_CLIENT_ID':
+    return state.set('clientId', action.clientId);
+  case 'SET_STATE':
+    return resetVote(setState(state, action.state));
+  case 'VOTE':
+    return vote(state, action.entry);
+  }
+  return state;
+}
+
 function setState(state, newState) {
   return state.merge(newState);
 }
@@ -25,16 +39,4 @@ function resetVote(state) {
   } else {
     return state;
   }
-}
-
-export default function(state = Map(), action) {
-  switch (action.type) {
-  case 'SET_CLIENT_ID':
-    return state.set('clientId', action.clientId);
-  case 'SET_STATE':
-    return resetVote(setState(state, action.state));
-  case 'VOTE':
-    return vote(state, action.entry);
-  }
-  return state;
 }

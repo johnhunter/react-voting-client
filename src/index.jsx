@@ -11,8 +11,7 @@ import getClientId from './client_id';
 import App from './components/App';
 import {VotingContainer} from './components/Voting';
 import {ResultsContainer} from './components/Results';
-
-require('./style.css');
+import './style.css';
 
 
 const socket = io(`${location.protocol}//${location.hostname}:8090`);
@@ -25,6 +24,8 @@ const createStoreWithMiddleware = applyMiddleware(
   remoteActionMiddleware(socket)
 )(createStore);
 const store = createStoreWithMiddleware(reducer);
+
+// register the client uuid
 store.dispatch(setClientId(getClientId()));
 
 
